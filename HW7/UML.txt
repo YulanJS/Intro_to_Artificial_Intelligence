@@ -1,0 +1,5 @@
+class Problem:
+
+class Model:
+	pcolorgivendist
+	P(red|d=0)

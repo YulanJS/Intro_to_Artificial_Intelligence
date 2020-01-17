@@ -1,0 +1,31 @@
+class Node:
+	state: (position, (a set of remaining medals))
+	parent Node
+	action(used this action to get to this state)
+	
+	def solution()
+	def path(): used parent Node, reversed already
+
+spartanquest.py
+
+class Maze:
+	width
+	height
+	walls: 2D array of T or F
+
+	def within_bounds
+
+class Problem:
+	maze
+	mascot_position: a tuple
+	medals: a set of tuples
+
+	def add_medal()
+	def add_mascot()
+	def is_goal(state)
+	def start_state(poisition, medals left)
+	def successors(state): all states reachable from currrent position
+
+
+Notes:
+1. North: (-1, 0) means, go to north, row - 1, col same

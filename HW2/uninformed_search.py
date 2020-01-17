@@ -1,0 +1,107 @@
+# -----------------------------------------------------------------------------
+# Name:     uninformed_search
+# Purpose:  Homework2 - Implement bfs and ucs graph search algorithms
+#
+# Author: Yulan Jin
+#
+# -----------------------------------------------------------------------------
+"""
+Uninformed Search Algorithm implementation
+
+dfs has been implemented for you.
+Your task for homework 2 is to implement bfs and ucs.
+"""
+import data_structures
+
+
+def dfs(problem):
+    """
+    Depth first graph search algorithm - implemented for you
+    returns a solution for the given search problem
+    :param
+    problem (a Problem object) representing the quest
+            see Problem class definition in spartanquest.py)
+    :return: list of actions representing the solution to the quest
+                or None if there is no solution
+    """
+    closed = set()  # keep track of our explored states
+    fringe = data_structures.Stack()  # for dfs, the fringe is a stack
+    state = problem.start_state()
+    root = data_structures.Node(state)
+    fringe.push(root)
+    while True:
+        if fringe.empty():
+            return None  # Failure - fringe is empty and no solution was found
+        node = fringe.pop()
+        if problem.is_goal(node.state):
+            return node.solution()
+        if node.state not in closed:  # we are implementing graph search
+            closed.add(node.state)
+            for child_state, action, action_cost in problem.successors(
+                    node.state):
+                child_node = data_structures.Node(child_state, node, action)
+                fringe.push(child_node)
+
+
+def bfs(problem):
+    """
+    Breadth first graph search algorithm
+    returns a solution for the given search problem
+    :param
+    problem (a Problem object) representing the quest
+            see Problem class definition in spartanquest.py)
+    :return: list of actions representing the solution to the quest
+            or None if there is no solution
+    """
+    # Enter your code here and remove the pass statement below
+    closed = set()  # keep track of our explored states
+    fringe = data_structures.Queue()  # for dfs, the fringe is a stack
+    state = problem.start_state()
+    root = data_structures.Node(state)
+    fringe.push(root)
+    while True:
+        if fringe.empty():
+            return None  # Failure - fringe is empty and no solution was found
+        node = fringe.pop()
+        if problem.is_goal(node.state):
+            return node.solution()
+        if node.state not in closed:  # we are implementing graph search
+            closed.add(node.state)
+            for child_state, action, action_cost in problem.successors(
+                    node.state):
+                child_node = data_structures.Node(child_state, node, action)
+                fringe.push(child_node)
+
+
+def ucs(problem):
+    """
+    Uniform cost first graph search algorithm
+    returns a solution for the given search problem
+    :param
+    problem (a Problem object) representing the quest
+            see Problem class definition in spartanquest.py)
+    :return: list of actions representing the solution to the quest
+    """
+    # Enter your code here and remove the pass statement below
+    closed = set()  # keep track of our explored states
+    fringe = data_structures.PriorityQueue()
+    state = problem.start_state()
+    root = data_structures.Node(state)
+    fringe.push(root, 0)
+    while True:
+        if fringe.empty():
+            return None  # Failure - fringe is empty and no solution was found
+        node = fringe.pop()
+        if problem.is_goal(node.state):
+            return node.solution()
+        if node.state not in closed:  # we are implementing graph search
+            closed.add(node.state)
+            for child_state, action, action_cost in problem.successors(
+                    node.state):
+                # action_cost: parent's single step cost
+                child_node = data_structures.Node(child_state, node, action)
+                child_node.cumulative_cost = node.cumulative_cost + action_cost
+                # set the child's cumulative_cost here
+                fringe.push(child_node, child_node.cumulative_cost)
+                # should be accumulated cost from the root
+

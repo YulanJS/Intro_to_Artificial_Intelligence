@@ -1,0 +1,46 @@
+GameState:
+	_count
+	def __init__(self, size): # constructor
+		size:
+		board [row][col] None
+		moves = 0: # of moves
+		last_move (row, col) None
+	
+
+	def is_win(self, player): if self.size == self.board[row].count(player): .count???
+	? list.count[player]
+
+	def available(self, row, col): 
+
+	def make_move(self, player, row, col):
+
+	def successor(self, move, player): # return a state
+		move: (row, col)
+		:return: a GameState object 
+		GameState._count += 1 ? static private variable?
+
+	def possible_moves(self):
+		:return: a list of tuples representing all available squares
+
+	def eval(self):
+		max_possible_lines - min_possible_lines
+
+class Game(object):
+	user: X 	AI: O
+	
+	def __init__(self, parent, size, search, depth):
+        	self.size = size
+        	self.search = search #algorithm
+        	self.state = GameState(size) 
+        	self.depth = depth #used by the forth algorithm	
+		
+	def play(self, event):
+		
+	def mark(self, row, column, player):
+		:param player: (string)  'AI' (O) or 'user' (X)
+
+	def gameover(self, outcome):
+
+	def ai_move(self): 277
+		
+	
